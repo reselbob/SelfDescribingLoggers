@@ -1,6 +1,5 @@
 ﻿using log4net;
 using System;
-using Reselbob.Logentries;
 using Newtonsoft.Json;
 
 namespace JsonLogger
@@ -17,22 +16,11 @@ namespace JsonLogger
 
             while (true)
             {
-                var data = new
-                {
-                    FirstName = Randomizer.GetFirstName(),
-                    LastName = Randomizer.GetLastName(),
-                    Company = "Tik Tik Technologies",
-                    Division = "DevOps",
-                    Entered = DateTime.UtcNow,
-                    Comment = Randomizer.GetString()
 
-                };
+                var msg = "Just starting up, all is well";
+                log.Info(msg);
 
-                string json = JsonConvert.SerializeObject(data);
-
-                log.Info(json);
-
-                Console.WriteLine(json);
+                Console.WriteLine(msg);
                 Console.WriteLine("");
                 Console.WriteLine("Strike the Enter key  to Log again. Type 'q' to exit");
 

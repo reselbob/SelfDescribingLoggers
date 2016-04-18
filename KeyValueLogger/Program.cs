@@ -14,13 +14,11 @@ namespace KeyValueLogger
             log4net.Config.XmlConfigurator.Configure();
             while (true)
             {
-                var msg = Randomizer.GetString() + " from: " + Randomizer.GetFullName();
+                var msg = "Just starting up, all is well";
+
                 log.Info(msg);
 
-                Console.WriteLine(msg);
-                Console.WriteLine("");
                 Console.WriteLine("Strike the Enter key  to Log again. Type 'q' to exit");
-
                 String x = System.Console.ReadLine();
                 if (x.ToLower().Equals("q")) Environment.Exit(0); 
             }
