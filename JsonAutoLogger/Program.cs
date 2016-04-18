@@ -1,26 +1,27 @@
-﻿using Reselbob.Logentries;
+﻿using log4net;
+using Newtonsoft.Json;
 using System;
 
 namespace JsonAutoLogger
 {
     class Program
     {
+        private static readonly ILog log =
+          LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static void Main(string[] args)
         {
+            log4net.Config.XmlConfigurator.Configure();
             while (true)
             {
-                var data = new
+                var msg = new
                 {
-                    FirstName = Randomizer.GetFirstName(),
-                    LastName = Randomizer.GetLastName(),
-                    Company = "Tik Tik Technologies",
-                    Division = "Development",
+                    Phase = "Application Startup",
                     Entered = DateTime.UtcNow,
-                    Comment = Randomizer.GetString()
+                    Comment = "All is well"
 
                 };
 
-                Reselbob.Logentries.JsonLogger.Log(data, LogLevel.Warn);
+                log.Info(JsonConvert.SerializeObject(msg));
 
                 Console.WriteLine("");
                 Console.WriteLine("Strike the Enter key  to Log again. Type 'q' to exit");
